@@ -1,0 +1,22 @@
+[
+    {
+    "name":"Wide Leg",
+    "price":2000,
+    "color":"black",
+    "id":1
+},
+    
+    {
+    "name":"Camisa leñador",
+    "price":5000,
+    "color":"white",
+    "id":2
+    },
+
+{
+    "name":"Vestido fiesta",
+    "price":6000,
+    "color":"red",
+    "id":3
+}
+]
