@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1234,
+    "usuario": "Mica",
+    "creationFech": "6-12-2022",
+    "cart": [
+      {
+        "name": "Camisa",
+        "price": 1235,
+        "stock": 3,
+        "description": "camisa a cuadros",
+        "thumbnail": "http",
+        "id": 1
+      },
+      {
+        "name": "Blusa",
+        "price": 8756,
+        "stock": 3,
+        "description": "blusa de verano",
+        "thumbnail": "http",
+        "id": 2
+      },
+      {
+        "name": "Pollera",
+        "price": 1567,
+        "stock": 3,
+        "description": "Pollera estampada",
+        "thumbnail": "http",
+        "id": 3
+      }
+    ]
+  },
+  {
+    "id": 1235,
+    "usuario": "Aldo",
+    "creationFech": "6-12-2022",
+    "cart": [
+      {
+        "name": "Camisa",
+        "price": 1235,
+        "stock": 3,
+        "description": "camisa a cuadros",
+        "thumbnail": "http",
+        "id": 1
+      }
+    ]
+  }
+]

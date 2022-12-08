@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Bikini",
+    "price": 4100,
+    "stock": 3,
+    "description": "Bikini azul",
+    "thumbnail": "http",
+    "id": 1
+  },
+  {
+    "name": "Zapatos",
+    "price": 7600,
+    "stock": 2,
+    "description": "Zapatos con tacos",
+    "thumbnail": "http",
+    "id": 2
+  },
+  {
+    "name": "Jean Wide",
+    "price": 3300,
+    "stock": 2,
+    "description": "Jean negro ancho",
+    "thumbnail": "http",
+    "id": 3
+  },
+  {
+    "name": "cAMISA",
+    "price": "7648",
+    "stock": "5",
+    "description": "JASHG",
+    "thumbnail": "jashajs",
+    "id": 4
+  }
+]

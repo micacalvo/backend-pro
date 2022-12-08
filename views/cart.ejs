@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+</head>
+<body>
+    <header>
+        <%- include('./partials/header') %>
+    </header>
+    <main>
+        <p>Hola <% cart.name %> </p>  
+        <% cart.forEach((prods) => { %> 
+            <div>
+                <% prods.img %> 
+            </div>
+            <div>
+                <p> <%= `Producto: ${prods.name}, Precio: ${prods.price}, ID: ${prods.id}` %> </p>
+                <% }) %>                  
+            </div>
+
+    </main>
+</body>
+<footer>
+    <%- include('./partials/footer') %> 
+</footer>
+</html>

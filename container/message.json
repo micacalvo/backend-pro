@@ -1,0 +1,37 @@
+[
+  {
+    "id": "l23A",
+    "autor": "micacalvo@gmail.com",
+    "mensaje": "Hola!",
+    "fecha": "6-12-2022",
+    "hora": "14:10"
+  },
+  {
+    "id": "234B",
+    "autor": "aldohcalvo@gmail.com",
+    "mensaje": "como estas?",
+    "fecha": "6-12-2022",
+    "hora": "14:20"
+  },
+  {
+    "id": "345C",
+    "autor": "anagonzalez@gmail.com",
+    "mensaje": "Todo bien y ustedes?",
+    "fecha": "6-12-2022",
+    "hora": "14:26"
+  },
+  {
+    "id": "456D",
+    "autor": "mauricalvo@gmail.com",
+    "mensaje": "Todo bien!",
+    "fecha": "6-12-2022",
+    "hora": "14:40"
+  },
+  {
+    "autor": "aldohcalvo@hotmail.com",
+    "mensaje": "Mica",
+    "fecha": "7-12-2022",
+    "hora": "21:54",
+    "id": 5
+  }
+]
