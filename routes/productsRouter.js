@@ -7,22 +7,36 @@ const productsRouter = new Router()
 const Container = require('../container/ContainerProducts')
 const products = new Container('../container/products.json')
 
-//Middleware
-function mdl1(req, res, next) {
-    if (req.query.rol !== "admin") {
-        res.status(500).send("Usuario no autorizado")
+// Funcion Error
+function errorNoEsAdmin(ruta, metodo) {
+    const error = {
+        error: -1,
     }
-    next()
+    if (ruta && metodo) {
+        error.descripcion = `ruta '${ruta}' metodo '${metodo}' no autorizado`
+    } else {
+        error.descripcion = 'no autorizado'
+    }
+    return error
 }
- 
+//Middleware para autorización
+const esAdm = true
+function mdl1(req, res, next) {
+    if (!esAdm) {
+        res.json(errorNoEsAdmin(req.url, req.method))
+    } else {
+        next()
+    }
+}
+
 //ruta de productos y metodos
-productsRouter.get('/productos', (req, res)=>{
+productsRouter.get('/productos', async (req, res)=>{
     products.getAll().then(products => {
         res.render('main', {products})
     })
 })
 
-productsRouter.get('/productos/:id', (req, res)=>{
+productsRouter.get('/productos/:id', async (req, res)=>{
     let {id} = req.params
     id = parseInt(id)
     products.getById(id).then(prod =>{
@@ -30,7 +44,7 @@ productsRouter.get('/productos/:id', (req, res)=>{
     })
 })
 
-productsRouter.post('/productos', mdl1, (req, res)=>{
+productsRouter.post('/productos', esAdm, async(req, res)=>{
     let { name, price, thumbnail } = req.body 
     let id
     products.getAll().then(products => {
@@ -47,7 +61,7 @@ productsRouter.post('/productos', mdl1, (req, res)=>{
     res.redirect('/productos')
 })
     
-productsRouter.put('/productos/:id', mdl1, (req, res)=>{
+productsRouter.put('/productos/:id', esAdm, async(req, res)=>{
     let { name, price, thumbnail } = req.body
     let { id } = req.params
     id = parseInt(id)
@@ -66,11 +80,11 @@ productsRouter.put('/productos/:id', mdl1, (req, res)=>{
     })
 })
 
-productsRouter.delete('/productos', mdl1, (req, res)=>{
+productsRouter.delete('/productos', esAdm, async(req, res)=>{
     products.deleteAll()
 })
     
-productsRouter.delete('/productos/:id', mdl1, (req, res)=>{
+productsRouter.delete('/productos/:id', esAdm, async(req, res)=>{
     let {id} = req.params
     products.deleteById(id)
 })

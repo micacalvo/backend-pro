@@ -27,12 +27,27 @@ const cart = new ContainerCart('./container/cart.json')
 //Configuración de puerto
 const PORT = process.env.PORT || 8080
 
-//Middleware para autorización
-function mdl1(req, res, next) {
-    if (req.query.rol !== "admin") {
-        res.status(500).send("Usuario no autorizado")
+// Funcion Error
+function errorNoEsAdmin(ruta, metodo) {
+    const error = {
+        error: -1,
     }
-    next()
+    if (ruta && metodo) {
+        error.descripcion = `ruta '${ruta}' metodo '${metodo}' no autorizado`
+    } else {
+        error.descripcion = 'no autorizado'
+    }
+    return error
+}
+
+//Middleware para autorización
+const esAdm = true
+function mdl1(req, res, next) {
+    if (!esAdm) {
+        res.json(errorNoEsAdmin(req.url, req.method))
+    } else {
+        next()
+    }
 }
 
 //Conección al server
@@ -54,13 +69,13 @@ io.on('connection', socket => {
 })
 
 //enrutador cart
-app.get('/cart', mdl1, (req, res)=>{//obtiene todos los carritos
+app.get('/cart', async (req, res)=>{//obtiene todos los carritos
     cart.getAll().then(cart => {        
         res.json(cart)
     })
 })
 
-app.get('/:id/cart', (req, res)=>{//obtiene el carrito por su id y los productos guardados en el 
+app.get('/cart/:id', async (req, res)=>{//obtiene el carrito por su id y los productos guardados en el 
     let {id} = req.params
     cart.getById(id).then(cart => {            
         res.json(cart)
@@ -115,13 +130,13 @@ app.delete('/:id/cart/:idProduct', (req, res)=>{//elimina un producto de un carr
 })
 
 //enrutador productos
- app.get('/productos', (req, res)=>{//obtiene todos los productos
+ app.get('/productos', async(req, res)=>{//obtiene todos los productos
     products.getAll().then(products => {
         res.render('main', {products})
     })
 })
 
-app.get('/productos/:id', (req, res)=>{//obtiene los productos por id
+app.get('/productos/:id', async (req, res)=>{//obtiene los productos por id
     let {id} = req.params
     id = parseInt(id)
     products.getById(id).then(prod =>{
@@ -129,7 +144,7 @@ app.get('/productos/:id', (req, res)=>{//obtiene los productos por id
     })
 })
 
-app.post('/productos', mdl1, (req, res)=>{ //crea los productos
+app.post('/productos', mdl1, async (req, res)=>{ //crea los productos
     let { name , price , thumbnail , stock , description } = req.body 
     let id
     products.getAll().then(products => {
@@ -145,7 +160,7 @@ app.post('/productos', mdl1, (req, res)=>{ //crea los productos
     res.redirect('/productos')
     })
     
-app.put('/productos/:id', mdl1, (req, res)=>{//modifica los productos por su id
+app.put('/productos/:id', mdl1, async (req, res)=>{//modifica los productos por su id
     let { name, price, thumbnail } = req.body
     let { id } = req.params
     id = parseInt(id)
@@ -164,11 +179,11 @@ app.put('/productos/:id', mdl1, (req, res)=>{//modifica los productos por su id
          })
     })
 
-app.delete('/productos', mdl1, (req, res)=>{//elimina todos los productos
+app.delete('/productos', mdl1, async (req, res)=>{//elimina todos los productos
     products.deleteAll()
     })
     
-app.delete('/productos/:id', mdl1, (req, res)=>{//elimina los productos por su id
+app.delete('/productos/:id', mdl1, async (req, res)=>{//elimina los productos por su id
     let {id} = req.params
     products.deleteById(id)
     }) 
