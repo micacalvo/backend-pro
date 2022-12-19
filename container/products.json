@@ -24,11 +24,11 @@
     "id": 3
   },
   {
-    "name": "cAMISA",
-    "price": "7648",
+    "name": "Camisa",
+    "price": "7000",
     "stock": "5",
-    "description": "JASHG",
-    "thumbnail": "jashajs",
+    "description": "Camisa blanca",
+    "thumbnail": "http",
     "id": 4
   }
-]
+] 

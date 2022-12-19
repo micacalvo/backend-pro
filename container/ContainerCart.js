@@ -1,11 +1,40 @@
 const fs = require('fs').promises
+//const path = require("./cart.json")
 
+//CRUD
 class ContainerCart{
     constructor (path){
         this.path = path
     }
 
-    async getAll (req, res){
+//Metodo para crear el carrito     
+    async saveObj(obj){
+        try {
+            const leer = await fs.readFile(this.path, "utf-8")
+            let data = JSON.parse(leer)
+            let timestamp= new Date().toLocaleString()
+            let id 
+            if(obj.id) {
+                id = obj.id
+            } else {
+                if(data.length === 0){
+                    id = 1 
+                } else {
+                    id = data.length + 1
+                }
+            }
+            const newCart = {...obj, id, timestamp}
+            data.push(newCart)
+            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
+            return obj.id 
+        } catch (error) {
+            const errorMsg = "No se pudo agregar al carrito"
+            return (errorMsg)
+        }
+    }
+
+//Listar todos los productos del carrito    
+    async getAll(){
         try {
             const all = await fs.readFile(this.path, 'utf-8')
             return JSON.parse(all)
@@ -15,83 +44,49 @@ class ContainerCart{
         }
     }
 
+//Buscar por id    
     async getById(id){
         try {
             const leer = await fs.readFile(this.path, "utf-8")
             let data = JSON.parse(leer)
             const obj = data.find (obj => obj.id === id)
             if (!obj) {
-                return obj            
+                const noId = 'No se encontro ese producto'
+                return noId           
             }else{
                return obj
             }              
         } catch (error) {
-            errorMsg = "No se pudo obtener el producto"
-            return (errorMsg)        
+            console.log(error)
         }
     }
 
-    async postNewCart(obj){
+//Eliminar todo el carrito    
+    async deleteCart(){
         try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
+            const all = await fs.writeFile(this.path, JSON.stringify([]), "utf-8")
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
+    async deleteObj(id){
+        try {
+            const leer = await fs.readFile(this.path,"utf-8")
+            const data = JSON.parse(leer)
+
+            const obj = data.filter(obj => obj.id !== id)
+            if(!obj) {
+                return null
+            }
             data.push(obj)
-            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
-            return console.log(obj.id) 
-        } catch (error) {
-            errorMsg = "No se pudo agregar"
-            return (errorMsg)      
-        }
+            await fs.writeFile(this.path, JSON.stringify(obj, null, 2), "utf-8")
+            return obj
+        } catch(error) {
+            console.log(error)
+        }    
+    }
 }
 
-    async saveObjInCArt(id, prod){
-        try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-            const obj = data.find (obj => obj.id === id)
-
-            obj.cart.push(prod)
-
-            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
-            return console.log(obj.id) 
-        } catch (error) {
-            errorMsg = "No se pudo agregar al carrito"
-            return (errorMsg)
-        }
-    }
-
-    async deleteCart(id){
-        try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-            const obj = data.find (obj => obj.id === id)
-
-            obj.cart=[]
-
-            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
-            return console.log(obj.id) 
-        } catch (error) {
-
-            errorMsg = "No se pudo eliminar carrito"
-            return (errorMsg)
-        }
-    }
-
-    async deleteObjInCart(id, idProduct){
-        try {
-            const leer = await fs.readFile(this.path, "utf-8")
-            let data = JSON.parse(leer)
-            const obj = data.find (obj => obj.id === id)
-            
-            let objDelet = obj.cart.filter(obj => obj.id !== idProduct)
-            obj.cart = objDelet
-
-            await fs.writeFile(this.path, JSON.stringify(data, null, 2), "utf-8")
-            return(obj)
-        } catch (error) {
-
-            let errorMsg = "No se pudo eliminar"
-            return (errorMsg)
-        }    }
-}
-module.exports=ContainerCart
+module.exports=ContainerCart 
