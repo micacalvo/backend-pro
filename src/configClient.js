@@ -1,20 +1,22 @@
-export default {
-    sqlite3: {
+//Para usar cada cliente hay que ir descomentando
+import knex from 'knex';
+
+const clientConnection = knex({
         client: 'sqlite3',
         connection: {
-            filename: `./db/ecommerce.sqlite`
+            filename: `./db/dbmica.sqlite`
         },
         useNullAsDefault: true
-    },
-    mariaDb: {
-        client: 'mysql',
+     
+        /* client: 'mysql',
         connection: {
             host: '127.0.0.1',
             user: 'root',
             password: 'srbrisa14',
-            database: 'backend⁮mica',
+            database: 'testmica',
             port: '8889'
-        }
-    }
-}
+        } */
+    
+})
 
+export default clientConnection;
