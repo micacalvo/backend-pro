@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1234,
+    "usuario": "Mica",
+    "timestamp": "6-12-2022",
+    "cart": []
+  },
+  {
+    "id": 1235,
+    "usuario": "Aldo",
+    "timestamp": "6-12-2022",
+    "cart": []
+  }
+]

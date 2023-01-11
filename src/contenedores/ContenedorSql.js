@@ -1,7 +1,7 @@
 // CLASE QUE CONTIENE CRUD SQL
 import configClient from "../configClient.js";
 
-class ProductosModel {
+class ContenedorSql {
 //C
 async save(producto) {
         const ids = await configClient('productos').insert(producto);
@@ -29,4 +29,4 @@ async deleteById(id) {
 }
 }
 
-export default ProductosModel;
+export default ContenedorSql;
