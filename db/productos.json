@@ -1,43 +1,74 @@
 [
   {
-    "name": "Bikini",
-    "price": 4100,
-    "stock": 3,
-    "description": "Bikini azul",
-    "thumbnail": "http",
-    "id": 1
+  "_id": {
+    "$oid": "63ab620412811c07061a31d9"
   },
+  "producto": "Camisa hombre",
+  "precio": 4020,
+  "stock": 0
+},
   {
-    "name": "Zapatos",
-    "price": 7600,
-    "stock": 2,
-    "description": "Zapatos con tacos",
-    "thumbnail": "http",
-    "id": 2
+  "_id": {
+    "$oid": "63ab620412811c07061a31da"
   },
+  "producto": "Camisa mujer",
+  "precio": 4289,
+  "stock": 0
+},
   {
-    "name": "Jean Wide",
-    "price": 3300,
-    "stock": 2,
-    "description": "Jean negro ancho",
-    "thumbnail": "http",
-    "id": 3
+  "_id": {
+    "$oid": "63ab633b12811c07061a31db"
   },
+  "producto": "Jean Wide",
+  "precio": 3005,
+  "stock": 100
+},
   {
-    "name": "Camisa",
-    "price": "7000",
-    "stock": "5",
-    "description": "Camisa blanca",
-    "thumbnail": "http",
-    "id": 4
+  "_id": {
+    "$oid": "63ab633b12811c07061a31dc"
   },
+  "producto": "Jean Chupin Negro",
+  "precio": 2659,
+  "stock": 100
+},
   {
-    "id": 5
+  "_id": {
+    "$oid": "63ab633b12811c07061a31dd"
   },
+  "producto": "Remera Dama Lino",
+  "precio": 1267,
+  "stock": 100
+},
   {
-    "id": 6
+  "_id": {
+    "$oid": "63ab633b12811c07061a31de"
   },
+  "producto": "Remera Hombre Algodon",
+  "precio": 1489,
+  "stock": 100
+},
   {
-    "id": 7
-  }
+  "_id": {
+    "$oid": "63ab633b12811c07061a31e0"
+  },
+  "producto": "Bikinis",
+  "precio": 4652,
+  "stock": 0
+},
+  {
+  "_id": {
+    "$oid": "63ab633b12811c07061a31e1"
+  },
+  "producto": "Maya hombre",
+  "precio": 1965,
+  "stock": 100
+},
+  {
+  "_id": {
+    "$oid": "63ab667112811c07061a31e7"
+  },
+  "producto": "Musculosa Algodon",
+  "precio": 1236,
+  "stock": 100
+}
 ]
