@@ -1,7 +1,7 @@
 import ContenedorMongodb from "../../contenedores/ContenedorMongodb.js";
 
 //Esquema
-class CarritoDaoMongodb extends ContenedorMongodb {
+class CarritosDaoMongodb extends ContenedorMongodb {
 
     constructor() {
         super('carritos', {
@@ -14,4 +14,4 @@ class CarritoDaoMongodb extends ContenedorMongodb {
     }
 }
 
-export default CarritoDaoMongodb
+export default CarritosDaoMongodb
