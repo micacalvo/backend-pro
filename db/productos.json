@@ -1,0 +1,74 @@
+[
+  {
+  "_id": {
+    "$oid": "63ab620412811c07061a31d9"
+  },
+  "producto": "Camisa hombre",
+  "precio": 4020,
+  "stock": 0
+},
+  {
+  "_id": {
+    "$oid": "63ab620412811c07061a31da"
+  },
+  "producto": "Camisa mujer",
+  "precio": 4289,
+  "stock": 0
+},
+  {
+  "_id": {
+    "$oid": "63ab633b12811c07061a31db"
+  },
+  "producto": "Jean Wide",
+  "precio": 3005,
+  "stock": 100
+},
+  {
+  "_id": {
+    "$oid": "63ab633b12811c07061a31dc"
+  },
+  "producto": "Jean Chupin Negro",
+  "precio": 2659,
+  "stock": 100
+},
+  {
+  "_id": {
+    "$oid": "63ab633b12811c07061a31dd"
+  },
+  "producto": "Remera Dama Lino",
+  "precio": 1267,
+  "stock": 100
+},
+  {
+  "_id": {
+    "$oid": "63ab633b12811c07061a31de"
+  },
+  "producto": "Remera Hombre Algodon",
+  "precio": 1489,
+  "stock": 100
+},
+  {
+  "_id": {
+    "$oid": "63ab633b12811c07061a31e0"
+  },
+  "producto": "Bikinis",
+  "precio": 4652,
+  "stock": 0
+},
+  {
+  "_id": {
+    "$oid": "63ab633b12811c07061a31e1"
+  },
+  "producto": "Maya hombre",
+  "precio": 1965,
+  "stock": 100
+},
+  {
+  "_id": {
+    "$oid": "63ab667112811c07061a31e7"
+  },
+  "producto": "Musculosa Algodon",
+  "precio": 1236,
+  "stock": 100
+}
+]
