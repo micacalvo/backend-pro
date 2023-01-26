@@ -17,7 +17,7 @@ function print(objeto) {
 }
 
 //Definimos un esquemas de autores
-const authorSchema = new schema.Entity('authors',{}, {idAttribute:"name"});
+const authorSchema = new schema.Entity('authors', {}, {idAttribute:"name"});
 const textSchema = new schema.Entity('text');
 const mensajeSchema = new schema.Entity('mensajes', {
     author: authorSchema,

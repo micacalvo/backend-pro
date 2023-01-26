@@ -18,7 +18,7 @@ formAgregarProducto.addEventListener("submit", (e) => {
 
 // Renderizamos los productos en el html
 
-socket.on("Productos", async (productos) => {
+socket.on("productos", async (productos) => {
     const htmlProductos = await makeHtmlTable(productos);
     document.getElementById("productos").innerHTML = htmlProductos;
   });
@@ -28,9 +28,21 @@ async function makeHtmlTable(productos) {
       return thml
 }
 
+//Desnormalización de mensajes
+// Definimos un esquema de autor
+const authorSchema = new normalizr.schema.Entity('authors',{}, {idAttribute:"mail"});
+
+// Definimos un esquema de mensaje
+const textSchema = new normalizr.schema.Entity('text');
+
+// Definimos un esquema de posts
+const mensajeSchema = new normalizr.schema.Entity('mensajes', {
+    author: authorSchema,
+    text: [textSchema]
+})
+
 // Chat websocket
-const inputName = document.getElementById("authorName");
-const inputFoto = document.getElementById("authorFoto");
+const inputName = document.getElementById("username");
 const inputMensaje = document.getElementById("inputMensaje");
 const btnEnviar = document.getElementById("btnEnviar");
 
@@ -38,22 +50,23 @@ const btnEnviar = document.getElementById("btnEnviar");
 const formPublicarMensaje = document.getElementById("formPublicarMensaje");
 formPublicarMensaje.addEventListener("submit", (e) => {
     e.preventDefault();
-    const nameValue = inputName.value;
-    const fotoValue = inputFoto.value;
-    const date = new Date().toLocaleDateString('es-ES')
-    const time = new Date().toLocaleTimeString();
-    const textValue = inputMensaje.value;
-    const newMensaje = {
+    
+    const mensaje = {
       author: {
-        name: nameValue,
-        foto: fotoValue
+          mail: inputName.value,
+          name: document.getElementById('firstname').value,
+          lastName: document.getElementById('lastname').value,
+          age: document.getElementById('age').value,
+          username: document.getElementById('alias').value,
+          avatar: document.getElementById('avatar').value
       },
-      text: textValue,
-      date: date + " " + time
-    };
-    socket.emit("newMensaje", newMensaje);
-    formPublicarMensaje.reset();
-  });
+      text: inputMensaje.value
+  }
+
+  socket.emit('newMensaje', mensaje);
+  formPublicarMensaje.reset()
+  inputMensaje.focus()
+})
 
   socket.on("mensaje", mensajes=> {
     // Desnormalizamos los mensajes recibidos por el socket y los integramos al html
@@ -77,13 +90,12 @@ formPublicarMensaje.addEventListener("submit", (e) => {
   function makeHtmlList(mensajes) {
     const html = mensajes
       .map((mensaje) => {
-        return `<div style="margin-bottom: 10px;">
-        <img src="${mensaje.author.foto}" height="30px">
-        <strong style="color:blue;">
-        ${mensaje.author.name + " "}
-        </strong>
+        return `<div>
+        <b style="color:blue;">${mensaje.author.mail}</b>
+        [<span style="color:brown;">${mensaje.date}</span>] :
         <i style="color:green;">${mensaje.text}</i>
-        </div>`;
+        <img width="50" src="${mensaje.author.avatar}" alt=" ">
+    </div>`;
       })
       .join(" ");
     return html;
