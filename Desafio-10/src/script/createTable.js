@@ -3,15 +3,15 @@ import clientConnection from "../configClient.js";
 //Función autoejecutable. Creación de tablas
 (async() => {
     try {
-       //await clientConnection.schema.dropTableIfExists('productos');
+        await clientConnection.schema.dropTableIfExists('productos');
         await clientConnection.schema.dropTableIfExists('mensajes');
 
     //Creación de las dos tablas
-        /* await clientConnection.schema.createTable("productos", (table) => {
+        await clientConnection.schema.createTable("productos", (table) => {
             table.increments("id").primary();
             table.string("name");
             table.integer("price");
-        }); */
+        });
 
         await clientConnection.schema.createTable("mensajes", (table) => {
             table.increments("id").primary();

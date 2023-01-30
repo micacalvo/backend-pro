@@ -1,4 +1,4 @@
-// Establecemos la comunicacion del lado del cliente 
+/* // Establecemos la comunicacion del lado del cliente 
 const socket = io.connect()
 
 // Selecciono el form completo y hacemos un preventDefault
@@ -99,4 +99,4 @@ formPublicarMensaje.addEventListener("submit", (e) => {
       })
       .join(" ");
     return html;
-  }
+  } */

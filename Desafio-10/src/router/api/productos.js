@@ -1,4 +1,4 @@
-import { Router } from 'express'
+/* import { Router } from 'express'
 import { combinacionesRandom} from '../../faker/productos.js'
 
 const productosRouter = new Router()
@@ -15,3 +15,4 @@ productosRouter.get('/', async (req, res) => {
 
 export default productosRouter
 
+ */
